@@ -19,9 +19,12 @@ async function favorite() {
         const foods = document.createElement('div')
         foods.classList.add('foods')
         foods.innerHTML=`
-        <div class = "favorite-item">
-        <img src ='${items.strCategoryThumb}' alt = '${items.strCategory}'>
+
+        <div class="foods">
+       
+        <img src='${items.strCategoryThumb}' alt='${items.strCategory}'>
         <p>${items.strCategory}</p>
+        
         </div>
 
         `
