@@ -32,7 +32,25 @@ async function favorite() {
                 .join("")}
             </div>
           </div>`;
-    }
+    }onst getFood = document.createElement("div");
+    getFood.classList.add("get");
+    get.innerHTML = `
+  <button>
+      <i class="fa-solid fa-square-xmark"></i>
+  </button>
+  <h2 class="name-meal">${meal.strMeal}</h2>
+  <h4 class="category">${meal.strMeal}</h4>
+  <h3 class="instruction"> Instructions </h3>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime rerum adipisci eveniet molestias, nihil nesciunt dolore totam itaque iste laudantium quod aperiam, voluptates fugiat error debitis cupiditate. Natus, ipsum maiores.
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit, quis velit eum enim quidem explicabo cum ipsam vero inventore, sapiente accusantium, beatae maiores earum pariatur cupiditate saepe incidunt assumenda provident!
+  </p>
+  <img src="${meal.strMealThumb}" alt="recipe"></img>
+  <div class="recipe-link">
+      <a href="${meal.strYoutube}">Watch the video</a>
+  </div>`;
+    content.appendChild(get);
+  }
+  
 
     favoriteMeal.innerHTML = `
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -54,3 +72,20 @@ async function favorite() {
 // Call the function to populate the carousel
 
 favorite();
+
+
+const get = document.querySelectorAll('.')
+<div class="content">
+<button>
+    <i class="fa-solid fa-square-xmark"></i>
+</button>
+<h2 class="name-meal">Meals Name Here</h2>
+<h4 class="category">Category Name</h4>
+<h3 class="instruction"> Instructions </h3>
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime rerum adipisci eveniet molestias, nihil nesciunt dolore totam itaque iste laudantium quod aperiam, voluptates fugiat error debitis cupiditate. Natus, ipsum maiores.
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit, quis velit eum enim quidem explicabo cum ipsam vero inventore, sapiente accusantium, beatae maiores earum pariatur cupiditate saepe incidunt assumenda provident!
+</p>
+<img src="https://www.themealdb.com/images/media/meals/1525873040.jpg" alt="recipe"></img>
+<div class="recipe-link">
+    <a href="#">Watch the video</a>
+</div>

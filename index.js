@@ -1,6 +1,13 @@
 const meals = document.getElementById("random");
 const search = document.getElementById("search");
+const get = document.querySelectorAll("#recipe");
+const searchFood = document.getElementById("searchMeal");
+const result = document.querySelector(".result");
+const showRecipe = document.querySelector(".meal");
+const load = document.querySelector(".result-container");
+
 getRandomMeal();
+
 async function getRandomMeal() {
   const resp = await fetch(
     "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -12,30 +19,26 @@ async function getRandomMeal() {
 }
 
 function addMeal(mealData) {
-  const meal = document.createElement("div");
-  meal.classList.add("meal");
-  meal.innerHTML = `
+  meals.innerHTML = `
          <div class="meal-header">
             <span>Random Recipes</span>
             <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
         </div>
         <div class="name">
-            <p>${mealData.strMeal}</p>
+            <p class='name-recipe'>${mealData.strMeal}</p>
             <button class="btn">
-                <i class="fa-solid fa-heart"></i>
-                <i art"></i>
+              <i class="fa-solid fa-eye"></i>
+                
               
             </button>
         </div>
 
          `;
 
-  meals.appendChild(meal);
-
-  const btn = meal.querySelector(".name .btn");
+  const btn = meals.querySelector(".name .btn");
   btn.addEventListener("click", () => {
     btn.classList.toggle("active");
-    addMeal();
+    LoadRecipe([mealData]);
   });
 }
 
@@ -48,8 +51,7 @@ async function searchMeal(meal) {
                 `);
   const response = await res.json();
   console.log(response);
-  const searchMeal = document.getElementById("searchMeal");
-  searchMeal.innerHTML = " ";
+  searchFood.innerHTML = " ";
   if (response.meals) {
     response.meals.forEach((meal) => {
       const food = document.createElement("div");
@@ -57,15 +59,13 @@ async function searchMeal(meal) {
       food.innerHTML = `
                     <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
                       <p id = 'title'>${meal.strMeal}</p>
-                     <p id='recipe'>Get Recipe</p>
+                     <a href="#" class="get-btn" data-id=${meal.idMeal}>Get Recipe</a>
                     `;
 
-      searchMeal.appendChild(food);
+      searchFood.appendChild(food);
     });
   }
 }
-
-searchMeal();
 
 document.querySelectorAll(".type").forEach((item) => {
   item.addEventListener("click", loadMeal);
@@ -77,8 +77,7 @@ async function loadMeal(e) {
     `);
   const response = await res.json();
   console.log(response);
-  const searchMeal = document.getElementById("searchMeal");
-  searchMeal.innerHTML = " ";
+  searchFood.innerHTML = " ";
   if (response.meals) {
     response.meals.forEach((meal) => {
       const food = document.createElement("div");
@@ -86,10 +85,59 @@ async function loadMeal(e) {
       food.innerHTML = `
                     <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
                       <p id = 'title'>${meal.strMeal}</p>
-                      <p id='recipe'>Get Recipe</p>
+                      <br>
+                      <a href="#" class="get-btn" data-id = '${meal.idMeal}'>Get Recipe</a>
                     `;
-
-      searchMeal.appendChild(food);
+      searchFood.appendChild(food);
     });
+  }
+}
+
+searchFood.addEventListener("click", getRecipe);
+async function getRecipe(e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("get-btn")) {
+    const mealId = e.target.dataset.id;
+    const res = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+    );
+    const response = await res.json();
+
+    LoadRecipe(response.meals);
+  }
+}
+
+function LoadRecipe(meal) {
+  meal = meal[0];
+  console.log(meal);
+  let html = `
+  
+      <button>
+      <i class="fa-solid fa-square-xmark"></i>
+  </button>
+  <h1 class="name-meal">${meal.strMeal}</h1>
+  <h2 class="category">${meal.strCategory}</h2>
+  <br>
+  <h3 class="instruction">Instructions:</h3>
+  <p>${meal.strInstructions}
+  
+  </p>
+  <img src="${meal.strMealThumb}" alt="recipe"></img>
+  <div class="recipe-link">
+      <a href="${meal.strYoutube}" class=' watch' target= "_blank ">Watch the video</a>
+      </div>
+      
+      
+      `;
+  result.innerHTML = html;
+  result.parentElement.style.display = "flex";
+}
+load.addEventListener("click", closeBtn);
+
+function closeBtn(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("fa-square-xmark")) {
+    result.parentElement.style.display = "none";
   }
 }
