@@ -1,164 +1,193 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-   
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 4sssssss00px;
+  margin-top: 50px;
+  background-color: #ded7d0;
+  min-height: 100vh;
+  border: #3c1053 solid 1px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 25px -10px;
+  text-align: center;
+  position: relative;
+}
+header {
+  padding: 20px;
+  display: flex;
+}
+button {
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-right: transparent;
+}
+#text {
+  width: 200px;
+  outline: none;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: transparent;
+}
+.heading {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  margin: 10px;
+  font-size: 30px;
+}
 
+ul img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 5px;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 400px;
-    margin-top: 50px;
-    background: linear-gradient(#3c1053);
-    min-height: 100vh;
-    border: #3c1053 solid 1px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 25px -10px;
-    text-align: center;
-    position: relative;
+img {
+  max-height: 250px;
+  width: 350px;
 }
-header{
-   padding: 20px;
-   display: flex
+.favourite {
+  background-color: #e3dee5;
 }
-button{
-    background-color: transparent;
-    border: none;
-    margin-left: 10px;
-    font-size: 20px;
- 
+.foods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 10px;
 }
-#text{
-    width: 100%;
-    outline: none;
-   
+#result {
+  margin: 20px;
 }
-.heading{
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-    margin:10px;
-    font-size: 30px;
-    
+.heading {
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
-
-ul img{
-   width: 80px;
-   height: 80px;
-   border-radius: 50%;
-   margin: 5px;
-
-}
-img{
-    max-height: 250px;
-    width: 350px;
-    
-}
-.favourite{ 
-    background-color: #e3dee5;
-
-}
-.foods{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    margin: 10px;
-
-}
-.meal-header{
-   padding: 10px;
-   margin: 10px;
-    position: relative;
+.meal-header {
+  padding: 10px;
+  margin: 10px;
+  position: relative;
 }
 .meal-header span {
-    background-color: white;
-    width: 150px;
-    padding: 7px;
-    position: absolute;
-    left: 10px;
-    top: 40px;
+  background-color: white;
+  width: 150px;
+  padding: 7px;
+  position: absolute;
+  left: 10px;
+  top: 40px;
+}
+.name {
+  margin-left: 30px;
+  display: flex;
+  gap: 100px;
+}
+.name button {
+  border: none;
+  font-size: 20px;
+}
 
+.name .btn .fa-solid {
+  color: grey;
 }
-.name{
-    margin-left: 30px;
-    display: flex;
-    gap: 100px;
+.name .btn.active .fa-solid {
+  color: #3c1053;
 }
-.name button{
-    border: none;
-    font-size: 20px;
-}
-
-.name .btn .fa-solid{
-    color: grey;
-
-}
-.name .btn.active .fa-solid{
-    color: #3c1053;
-}
-.content{
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    height: 500px;
-    background-color:rgb(185, 104, 75);
-    color: white;
-    border-radius: 3px;
-    margin: 15px;
-    justify-content: center;
-    align-items: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    position: absolute;
-    top: 30%;
-    bottom: 30%;
-    display: none;
-    
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  height: 500px;
+  background-color: rgb(185, 104, 75);
+  color: white;
+  border-radius: 3px;
+  margin: 15px;
+  justify-content: center;
+  align-items: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  position: absolute;
+  top: 30%;
+  bottom: 30%;
+  display: none;
 }
 
 .content img {
-    max-width: 100px;
-    margin: 10px;
-    border-radius: 50%;
+  max-width: 100px;
+  margin: 10px;
+  border-radius: 50%;
 }
-.content button .fa-solid{
-    margin-top: 10px;
-    font-size: 20px;
-    color: cornsilk;
-    border: none;
+.content button .fa-solid {
+  margin-top: 10px;
+  font-size: 20px;
+  color: cornsilk;
+  border: none;
 }
-.name-meal{
-    margin-bottom: 10px;
+.name-meal {
+  margin-bottom: 10px;
 }
 .favorite {
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap ;
-    margin: 10px;
-    
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-width: 400px;
+  max-height: 400px;
 }
 
-.foods{
-    margin-bottom: 20px;
-    
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
+li {
+  margin: 10px;
+  list-style: none;
+  display: inline;
+  gap: 70px;
 
-.foods > img{
-    border-radius: 100%;
-    max-height: 100px;
-    max-width: 100px;
+  border: cornsilk 2px solid;
+  background-color: #802c10ea;
+  padding: 10px;
+  font-size: 15px;
+}
+li a {
+  color: cornsilk;
+  text-decoration: none;
+}
+#recipe {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0.5rem auto;
+  width: 175px;
+  color: white;
+  background-color: #802c10ea;
+  border: 2px white solid;
+
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+#title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0rem auto;
+  max-width: 300px;
+  color: #802c10ea;
 }
