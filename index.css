@@ -9,9 +9,13 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 .container {
   display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -19,7 +23,6 @@ body {
   background-color: #ded7d0;
   min-height: 100vh;
   border: #3c1053 solid 1px;
-  border-radius: 20px;
   box-shadow: 1px 1px 25px -10px;
   text-align: center;
   position: relative;
