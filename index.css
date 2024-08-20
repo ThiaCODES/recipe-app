@@ -140,7 +140,7 @@ img {
 }
 .result {
   flex-direction: column;
-  max-width: 350px;
+  width: 350px;
   min-height: 600px;
   background-color: rgb(53, 39, 25);
   color: white;
