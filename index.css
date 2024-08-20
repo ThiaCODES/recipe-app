@@ -16,7 +16,6 @@ body {
   justify-content: center;
   align-items: center;
   max-width: 400px;
-  margin-top: 50px;
   background-color: #ded7d0;
   min-height: 100vh;
   border: #3c1053 solid 1px;
@@ -138,7 +137,7 @@ img {
 }
 .result {
   flex-direction: column;
-  width: 350px;
+  max-width: 350px;
   min-height: 600px;
   background-color: rgb(53, 39, 25);
   color: white;
@@ -155,6 +154,7 @@ img {
   font-size: 14px;
   transform: translate(-50%, -50%);
   z-index: 10;
+
   overflow-y: auto;
 }
 
@@ -227,4 +227,25 @@ li a {
   color: white;
   padding: 5px;
   background-color: rgb(156, 21, 21);
+}
+
+#roll .fa-spinner {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  font-size: 30px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#result-title {
+  display: none;
+  margin-bottom: 10px;
 }

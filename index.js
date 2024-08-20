@@ -5,10 +5,13 @@ const searchFood = document.getElementById("searchMeal");
 const result = document.querySelector(".result");
 const showRecipe = document.querySelector(".meal");
 const load = document.querySelector(".result-container");
+const spin = document.getElementById("roll");
+const resultTitle = document.getElementById("result-title");
 
 getRandomMeal();
 
 async function getRandomMeal() {
+  spin.style.display = "none";
   const resp = await fetch(
     "https://www.themealdb.com/api/json/v1/1/random.php"
   );
@@ -44,6 +47,8 @@ function addMeal(mealData) {
 
 search.addEventListener("click", searchMeal);
 async function searchMeal(meal) {
+  searchFood.innerHTML = " ";
+  spin.style.display = "block";
   let enter = document.getElementById("text").value.trim();
   enter = enter.charAt(0).toUpperCase() + enter.slice(1).toLowerCase();
   const res =
@@ -51,48 +56,59 @@ async function searchMeal(meal) {
                 `);
   const response = await res.json();
   console.log(response);
-  searchFood.innerHTML = " ";
-  if (response.meals) {
-    response.meals.forEach((meal) => {
-      const food = document.createElement("div");
-      food.classList.add("food");
-      food.innerHTML = `
-                    <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
-                      <p id = 'title'>${meal.strMeal}</p>
-                     <a href="#" class="get-btn" data-id=${meal.idMeal}>Get Recipe</a>
-                    `;
+  setTimeout(() => {
+    resultTitle.style.display = "block";
+    searchFood.innerHTML = " ";
+    if (response.meals) {
+      response.meals.forEach((meal) => {
+        const food = document.createElement("div");
+        food.classList.add("food");
+        food.innerHTML = `
+                      <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
+                        <p id = 'title'>${meal.strMeal}</p>
+                        <br>
+                       <a href="#" class="get-btn" data-id=${meal.idMeal}>Get Recipe</a>
+                      `;
 
-      searchFood.appendChild(food);
-    });
-  }
+        searchFood.appendChild(food);
+      });
+    }
+    spin.style.display = "none";
+  }, 3000);
 }
-
 document.querySelectorAll(".type").forEach((item) => {
   item.addEventListener("click", loadMeal);
 });
 async function loadMeal(e) {
+  searchFood.innerHTML = " ";
+  spin.style.display = "block";
   const attribute = e.target.getAttribute("data-ingredient");
   const res =
     await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${attribute}
     `);
   const response = await res.json();
   console.log(response);
-  searchFood.innerHTML = " ";
-  if (response.meals) {
-    response.meals.forEach((meal) => {
-      const food = document.createElement("div");
-      food.classList.add("food");
-      food.innerHTML = `
-                    <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
-                      <p id = 'title'>${meal.strMeal}</p>
-                      <br>
-                      <a href="#" class="get-btn" data-id = '${meal.idMeal}'>Get Recipe</a>
-                    `;
-      searchFood.appendChild(food);
-    });
-  }
-}
 
+  setTimeout(() => {
+    resultTitle.style.display = "block";
+    searchFood.innerHTML = " ";
+    if (response.meals) {
+      response.meals.forEach((meal) => {
+        const food = document.createElement("div");
+        food.classList.add("food");
+        food.innerHTML = `
+                      <img src='${meal.strMealThumb}' alt='${meal.strMeal}'>
+                        <p id = 'title'>${meal.strMeal}</p>
+                        <br>
+                       <a href="#" class="get-btn" data-id=${meal.idMeal}>Get Recipe</a>
+                      `;
+
+        searchFood.appendChild(food);
+      });
+    }
+    spin.style.display = "none";
+  }, 3000);
+}
 searchFood.addEventListener("click", getRecipe);
 async function getRecipe(e) {
   e.preventDefault();
@@ -123,13 +139,23 @@ function LoadRecipe(meal) {
   <p>${meal.strInstructions}
   
   </p>
+  <br>
+  <h3>Main Ingredrients:</h3>
+  <br>
+  <p>${meal.strIngredient1}</p>
+  <p>${meal.strIngredient2}</p>
+  <p>${meal.strIngredient3}</p>
+  <p>${meal.strIngredient4}</p>
+  <p>${meal.strIngredient5}</p>
+  <p>${meal.strIngredient6}</p>
   <img src="${meal.strMealThumb}" alt="recipe"></img>
-  <div class="recipe-link">
-      <a href="${meal.strYoutube}" class=' watch' target= "_blank ">Watch the video</a>
+    
       </div>
       
       
+      
       `;
+  console.log(meal);
   result.innerHTML = html;
   result.parentElement.style.display = "flex";
 }
